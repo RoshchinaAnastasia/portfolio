@@ -40,7 +40,7 @@ WHERE level_id < 2;
 6. Выбрать user_name всех пользователей уровня admin используя подзапрос								
 SELECT user_name
 FROM "user"
-WHERE level_id = (SELECT id from ""level"" WHERE level_name = 'admin');								
+WHERE level_id = (SELECT id from "level" WHERE level_name = 'admin');								
 7. Выбрать user_name всех пользователей уровня admin используя join								
 SELECT user_name
 FROM "user" AS i
