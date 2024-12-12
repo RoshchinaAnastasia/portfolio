@@ -1,0 +1,729 @@
+{
+	"info": {
+		"_postman_id": "8d6ffb45-ead3-4516-ab23-37f42acf50ea",
+		"name": "Dummy API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37200917"
+	},
+	"item": [
+		{
+			"name": "Получение списка пользователей (без авторизации)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_dummy}}/user?page=1&limit=10",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение списка пользователей",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_dummy}}/user?page=1&limit=10",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение списка пользователей (пагинация)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_dummy}}/user?page=1&limit=10",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let bodyres = pm.response.json();",
+							"console.log (bodyres)",
+							"let requestData = JSON.parse(pm.request.body.raw)",
+							"let id = bodyres.id ",
+							"console.log (id) ",
+							"pm.collectionVariables.set(\"user_id\", id);",
+							"",
+							"pm.test(\"First name from response = First name from request\", function () {",
+							"    var First_name_req = requestData.firstName",
+							"    var First_name_resp = bodyres.firstName",
+							"    pm.expect(First_name_resp).to.eql(First_name_req);",
+							"    console.log (First_name_resp)",
+							"    console.log (First_name_req)",
+							"});",
+							"",
+							"pm.test(\"Last name from response = Last name from request\", function () {",
+							"    var Last_name_req = requestData.lastName",
+							"    var Last_name_resp = bodyres.lastName",
+							"    pm.expect(Last_name_resp).to.eql(Last_name_req);",
+							"    console.log (Last_name_resp)",
+							"    console.log (Last_name_req)",
+							"});",
+							"",
+							"pm.test(\"Email name from response = Email name from request\", function () {",
+							"    var Email_req = requestData.email",
+							"    var Email_resp = bodyres.email",
+							"    pm.expect(Email_resp).to.eql(Email_req);",
+							"    console.log (Email_resp)",
+							"    console.log (Email_req)",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Екатерина\",\n    \"lastName\": \"Иванова\",\n    \"email\": \"valeria12398765422200890@mail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/user/create",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Обновление пользователя",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"firstName\": \"Alina\",\n\"phone\": 89243453434\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/user/:id",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{user_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение пользователя",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_dummy}}/user/:id",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{user_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание поста",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let postres = pm.response.json();",
+							"console.log (postres)",
+							"let id = postres.id ",
+							"console.log (id) ",
+							"pm.collectionVariables.set(\"post_id\", id);",
+							"pm.test(\"Response time is less than 3000ms\", function () {",
+							"  pm.expect(pm.response.responseTime).to.be.below(3000);",
+							"});",
+							"",
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response has the required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.property('id');",
+							"    pm.expect(responseData).to.have.property('image');",
+							"    pm.expect(responseData).to.have.property('likes');",
+							"    pm.expect(responseData).to.have.property('link');",
+							"    pm.expect(responseData).to.have.property('tags');",
+							"    pm.expect(responseData).to.have.property('text');",
+							"    pm.expect(responseData).to.have.property('publishDate');",
+							"    pm.expect(responseData).to.have.property('updatedDate');",
+							"    pm.expect(responseData).to.have.property('owner');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Likes is a non-negative integer\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.likes).to.be.a('number');",
+							"    pm.expect(responseData.likes).to.be.at.least(0, \"Likes should be a non-negative integer\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Owner object should have id, firstName, and lastName properties\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.owner).to.exist.and.to.be.an('object');",
+							"    pm.expect(responseData.owner).to.have.property('id').that.is.a('string');",
+							"    pm.expect(responseData.owner).to.have.property('firstName').that.is.a('string');",
+							"    pm.expect(responseData.owner).to.have.property('lastName').that.is.a('string');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response schema matches the expected schema definition\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData).to.be.an('object');",
+							"  pm.expect(responseData).to.have.property('id');",
+							"  pm.expect(responseData).to.have.property('image');",
+							"  pm.expect(responseData).to.have.property('likes');",
+							"  pm.expect(responseData).to.have.property('link');",
+							"  pm.expect(responseData).to.have.property('tags');",
+							"  pm.expect(responseData).to.have.property('text');",
+							"  pm.expect(responseData).to.have.property('publishDate');",
+							"  pm.expect(responseData).to.have.property('updatedDate');",
+							"  pm.expect(responseData).to.have.property('owner');",
+							"  pm.expect(responseData.owner).to.be.an('object');",
+							"  pm.expect(responseData.owner).to.have.property('id');",
+							"  pm.expect(responseData.owner).to.have.property('firstName');",
+							"  pm.expect(responseData.owner).to.have.property('lastName');",
+							"});",
+							"",
+							"pm.test(\"Автором поста является Валерия\", function () {",
+							"    pm.expect(postres.owner.firstName).to.eql(\"Валерия\");",
+							"    console.log (postres.owner.firstName)",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"text\": \"Hello world!\",\n\"owner\": \"{{user_id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/post/create",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"post",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение поста по id поста",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/post/:id",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"post",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{post_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение списка постов",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/post",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание комментария",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let commentres = pm.response.json();",
+							"console.log (commentres)",
+							"let id = commentres.id ",
+							"console.log (id) ",
+							"pm.collectionVariables.set(\"comment_id\", id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"message\": \"Good!\",\n\"owner\": \"{{user_id}}\",\n\"post\": \"{{post_id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/comment/create",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получить список комментариев по пользователю",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/user/:id/comment",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user",
+						":id",
+						"comment"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{user_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удалить комментарий",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"message\": \"Good day!\",\n\"owner\": \"60d0fe4f5311236168a109d7\",\n\"post\": \"6718bac608d2824b17da90b2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/comment/:id",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"comment",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{comment_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получить список комментариев по пользователю",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/user/:id/comment",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user",
+						":id",
+						"comment"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{user_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление пользователя",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_dummy}}/user/:id",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{user_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение пользователя после удаления",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_dummy}}/user/:id",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{user_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{app-id}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "app-id",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "app-id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "post_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "comment_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
