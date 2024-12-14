@@ -368,7 +368,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"firstName\": \"Alina\",\n\"phone\": 89243453434\n}",
+					"raw": "{\n\"text\": \"Good world!\",\n\"owner\": \"{{user_id}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -376,18 +376,18 @@
 					}
 				},
 				"url": {
-					"raw": "{{url_dummy}}/user/:id",
+					"raw": "{{url_dummy}}/post/:id",
 					"host": [
 						"{{url_dummy}}"
 					],
 					"path": [
-						"user",
+						"post",
 						":id"
 					],
 					"variable": [
 						{
 							"key": "id",
-							"value": "{{user_id}}"
+							"value": "{{post_id}}"
 						}
 					]
 				}
@@ -474,7 +474,7 @@
 		{
 			"name": "Удаление поста",
 			"request": {
-				"method": "PUT",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "",
@@ -484,7 +484,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"firstName\": \"Alina\",\n\"phone\": 89243453434\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -492,18 +492,18 @@
 					}
 				},
 				"url": {
-					"raw": "{{url_dummy}}/user/:id",
+					"raw": "{{url_dummy}}/post/:id",
 					"host": [
 						"{{url_dummy}}"
 					],
 					"path": [
-						"user",
+						"post",
 						":id"
 					],
 					"variable": [
 						{
 							"key": "id",
-							"value": "{{user_id}}"
+							"value": "{{post_id}}"
 						}
 					]
 				}
