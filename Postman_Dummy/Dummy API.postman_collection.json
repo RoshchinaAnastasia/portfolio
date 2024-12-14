@@ -144,7 +144,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Екатерина\",\n    \"lastName\": \"Иванова\",\n    \"email\": \"valeria12398765422200890@mail.com\"\n}",
+					"raw": "{\n    \"firstName\": \"Екатерина\",\n    \"lastName\": \"Иванова\",\n    \"email\": \"val0eria12398765422200890@mail.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -356,6 +356,45 @@
 			"response": []
 		},
 		{
+			"name": "Обновление поста",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"firstName\": \"Alina\",\n\"phone\": 89243453434\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/user/:id",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{user_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Получение поста по id поста",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -427,6 +466,45 @@
 					],
 					"path": [
 						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление поста",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"firstName\": \"Alina\",\n\"phone\": 89243453434\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_dummy}}/user/:id",
+					"host": [
+						"{{url_dummy}}"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{user_id}}"
+						}
 					]
 				}
 			},
