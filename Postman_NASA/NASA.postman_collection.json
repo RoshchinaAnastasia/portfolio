@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "00efb8e8-70ac-4869-b037-d04bb2e81eec",
+		"name": "NASA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37200917"
+	},
+	"item": [
+		{
+			"name": "Запрос по дате Земли Curiosity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let bodyres = pm.response.json();",
+							"console.log (bodyres)",
+							"let id = bodyres.photos[1].id",
+							"console.log (id) ",
+							"pm.collectionVariables.set(\"id_photo\", id);",
+							"",
+							"let earth_date_res = bodyres.photos[1].earth_date",
+							"let get_params = pm.request.url.query.toObject();",
+							"//let earth_date_req = get_params.earth_date",
+							"let earth_date_req = get_params['earth_date']",
+							"console.log(\"date request = \" + earth_date_req)",
+							"console.log (\"date response = \" + earth_date_res)",
+							"",
+							"pm.test(\"Earth date from request equal for erath date drom response for 2 photo\", function () {",
+							"    pm.expect(earth_date_res).to.eql(earth_date_req);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/mars-photos/api/v1/rovers/Curiosity/photos?earth_date={{date}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"mars-photos",
+						"api",
+						"v1",
+						"rovers",
+						"Curiosity",
+						"photos"
+					],
+					"query": [
+						{
+							"key": "earth_date",
+							"value": "{{date}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос по дате Земли Opportunity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let bodyres = pm.response.json();",
+							"console.log (bodyres)",
+							"let id = bodyres.photos[1].id ",
+							"console.log (id) ",
+							"pm.collectionVariables.set(\"id_photo\", id);",
+							"",
+							"let earth_date_res = bodyres.photos[1].earth_date",
+							"let get_params = pm.request.url.query.toObject();",
+							"//let earth_date_req = get_params.earth_date",
+							"let earth_date_req = get_params['earth_date']",
+							"console.log(\"date request = \" + earth_date_req)",
+							"console.log (\"date response = \" + earth_date_res)",
+							"",
+							"pm.test(\"Earth date from request equal for erath date drom response for 2 photo\", function () {",
+							"    pm.expect(earth_date_res).to.eql(earth_date_req);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/mars-photos/api/v1/rovers/Opportunity/photos?earth_date={{date}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"mars-photos",
+						"api",
+						"v1",
+						"rovers",
+						"Opportunity",
+						"photos"
+					],
+					"query": [
+						{
+							"key": "earth_date",
+							"value": "{{date}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос по дате Земли Spirit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let bodyres = pm.response.json();",
+							"console.log (bodyres)",
+							"let id = bodyres.photos[1].id ",
+							"console.log (id) ",
+							"pm.collectionVariables.set(\"id_photo\", id);",
+							"",
+							"let earth_date_res = bodyres.photos[1].earth_date",
+							"let get_params = pm.request.url.query.toObject();",
+							"//let earth_date_req = get_params.earth_date",
+							"let earth_date_req = get_params['earth_date']",
+							"console.log(\"date request = \" + earth_date_req)",
+							"console.log (\"date response = \" + earth_date_res)",
+							"",
+							"pm.test(\"Earth date from request equal for erath date drom response for 2 photo\", function () {",
+							"    pm.expect(earth_date_res).to.eql(earth_date_req);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/photos?earth_date={{date}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"mars-photos",
+						"api",
+						"v1",
+						"rovers",
+						"Spirit",
+						"photos"
+					],
+					"query": [
+						{
+							"key": "earth_date",
+							"value": "{{date}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{api_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "api_key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id_photo",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "date",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
